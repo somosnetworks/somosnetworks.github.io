@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        /* General */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #4a90e2;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            height: 45px;
+            box-sizing: border-box;
+            padding: 0 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #4a90e2;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #357ab7;
+        }
+
+        .btn-secondary {
+            background-color: #e74c3c;
+        }
+
+        .btn-secondary:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-row {
+            display: inline-block;
+            appearance: none;
+            border: none;
+            background-color: transparent;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: auto auto 0.3fr auto 0.1fr;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .row input {
+            font-size: 13px;
+        }
+
+        .label-radio {
+            margin-bottom: 0;
+        }
+
+        .label-radio > div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+        }
+
+        .label-radio > div input {
+            height: 20px;
+            width: 20px;
+            margin: 0;
+            margin-right: 20px;
+        } 
+
+        #add-row {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .row button {
+                grid-column: span 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Formulario de Equipos</h2>
+    <form id="form">
+        <!-- Campo de Fecha -->
+        <div class="mb-20">
+            <label>Fecha:</label>
+            <input type="date" id="date" required>
+        </div>
+
+        <!-- Configurador -->
+        <div class="mb-20">
+            <label>Configurador:</label>
+            <select id="configurator" required>
+                <option value="opcion1">Opción 1</option>
+                <option value="opcion2">Opción 2</option>
+                <option value="opcion3">Opción 3</option>
+            </select>
+        </div>
+
+        <!-- Equipos -->
+        <div id="equipment-rows" class="mb-20">
+            <h3>Equipos</h3>
+            <div class="row mb-20">
+                <div>
+                    <div class="label-radio">
+                        <div>
+                            <input type="radio" id="nuevo" name="equipment" value="Nuevo" />
+                            <label for="nuevo">Nuevo</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="reintegro" name="equipment" value="Reintegro" />
+                            <label for="reintegro">Reintegro</label>
+                        </div>
+                    </div>
+                </div>
+                <select id="equipmentType" name="equipmentType" required>
+                    <option value="" disabled selected>Tipo de equipo</option>
+                    <option value="opcion1">Opción 1</option>
+                    <option value="opcion2">Opción 2</option>
+                    <option value="opcion3">Opción 3</option>
+                </select>
+                <input type="number" placeholder="Cantidad" class="quantity" required>
+                <div>
+                    <div class="label-radio">
+                        <div>
+                            <input type="radio" id="bueno" name="status" value="Bueno" />
+                            <label for="bueno">Bueno</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="malo" name="status" value="Malo" />
+                            <label for="malo">Malo</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary remove-row">X</button>
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <button type="button" id="add-row" class="btn-row">Agregar Fila</button>
+
+        <div class="mb-20">
+            <label>Comentarios del Dia:</label>
+            <textarea name="comment" id="coment" placeholder="Comentario:" rows="10"></textarea>
+        </div>
+        
+        <div>
+            <button type="submit" class="btn btn-full">Enviar</button>
+        </div>
+    </form>
+
+    <script>
+        const form = document.getElementById('form');
+        const equipmentRows = document.getElementById('equipment-rows');
+        const addRowBtn = document.getElementById('add-row');
+
+        // Añadir nueva fila
+        addRowBtn.addEventListener('click', () => {
+        const rowCount = equipmentRows.querySelectorAll('.row').length + 1;
+        const newRow = document.createElement('div');
+        newRow.classList.add('row');
+        newRow.classList.add('mb-20');
+    
+        newRow.innerHTML = `
+            <div>
+            <div class="label-radio">
+                <div>
+                <input type="radio" id="nuevo${rowCount}" name="equipment${rowCount}" value="Nuevo" required />
+                <label for="nuevo${rowCount}">Nuevo</label>
+                </div>
+                <div>
+                <input type="radio" id="reintegro${rowCount}" name="equipment${rowCount}" value="Reintegro" required />
+                <label for="reintegro${rowCount}">Reintegro</label>
+                </div>
+            </div>
+            </div>
+            <select id="equipmentType${rowCount}" name="equipmentType" required>
+            <option value="" disabled selected>Tipo de equipo</option>
+            <option value="opcion1">Opción 1</option>
+            <option value="opcion2">Opción 2</option>
+            <option value="opcion3">Opción 3</option>
+            </select>
+            <input type="number" placeholder="Cantidad" class="quantity" required>
+            <div>
+            <div class="label-radio">
+                <div>
+                <input type="radio" id="bueno${rowCount}" name="status${rowCount}" value="Bueno" required />
+                <label for="bueno${rowCount}">Bueno</label>
+                </div>
+                <div>
+                <input type="radio" id="malo${rowCount}" name="status${rowCount}" value="Malo" required />
+                <label for="malo${rowCount}">Malo</label>
+                </div>
+            </div>
+            </div>
+            <button type="button" class="btn btn-secondary remove-row">X</button>
+        `;
+        equipmentRows.appendChild(newRow);
+        });
+
+        // Eliminar una fila
+        equipmentRows.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-row')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Enviar datos al servidor
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const date = document.getElementById('date').value;
+            const configurator = document.getElementById('configurator').value;
+
+            const items = Array.from(document.querySelectorAll('.row')).map(row => ({
+                equipment: row.querySelector('.equipment').value,
+                equipmentType: row.querySelector('.equipmentType').value,
+                quantity: row.querySelector('.quantity').value,
+                status: row.querySelector('.status').value,
+            }));
+
+            const response = await fetch('TU_URL_DE_APPS_SCRIPT', {
+                method: 'POST',
+                body: JSON.stringify({ date, configurator, items }),
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                alert('Datos enviados correctamente');
+                form.reset();
+            } else {
+                alert('Error al enviar los datos');
+            }
+        });
+    </script>
+</body>
+
+</html>
