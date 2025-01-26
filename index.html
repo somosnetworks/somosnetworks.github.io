@@ -163,9 +163,11 @@
         <div class="mb-20">
             <label>Configurador:</label>
             <select id="configurator" required>
-                <option value="opcion1">Opción 1</option>
-                <option value="opcion2">Opción 2</option>
-                <option value="opcion3">Opción 3</option>
+                <option value="opcion1">Kevin David Montoya Rivera</option>
+                <option value="opcion2">Janeth Patricia David</option>
+                <option value="opcion3">Reinel Villegas Calderón</option>
+                <option value="opcion4">Sebastián Ortiz Jiménez</option>
+                <option value="opcion5">John Alejandro Vallejo Ramirez</option>
             </select>
         </div>
 
@@ -188,9 +190,15 @@
                 </div>
                 <select id="equipmentType" name="equipmentType" required>
                     <option value="" disabled selected>Tipo de equipo</option>
-                    <option value="opcion1">Opción 1</option>
-                    <option value="opcion2">Opción 2</option>
-                    <option value="opcion3">Opción 3</option>
+                    <option value="opcion1">Phantom</option>
+                    <option value="opcion2">Vilo 6 (Bodega)</option>
+                    <option value="opcion3">TvBox</option>
+                    <option value="opcion4">Deco</option>
+                    <option value="opcion5">Eero</option>
+                    <option value="opcion6">Vilo 6 (ORBS)</option>
+                    <option value="opcion7">Vilo 5 (ORBS)</option>
+                    <option value="opcion8">Vilo 5 (Bodega)</option>
+                    <option value="opcion9">Poe Reverso</option>
                 </select>
                 <input type="number" placeholder="Cantidad" class="quantity" required>
                 <div>
@@ -250,9 +258,15 @@
             </div>
             <select id="equipmentType${rowCount}" name="equipmentType" required>
             <option value="" disabled selected>Tipo de equipo</option>
-            <option value="opcion1">Opción 1</option>
-            <option value="opcion2">Opción 2</option>
-            <option value="opcion3">Opción 3</option>
+            <option value="opcion1">Phantom</option>
+            <option value="opcion2">Vilo 6 (Bodega)</option>
+            <option value="opcion3">TvBox</option>
+            <option value="opcion4">Deco</option>
+            <option value="opcion5">Eero</option>
+            <option value="opcion6">Vilo 6 (ORBS)</option>
+            <option value="opcion7">Vilo 5 (ORBS)</option>
+            <option value="opcion8">Vilo 5 (Bodega)</option>
+            <option value="opcion9">Poe Reverso</option>
             </select>
             <input type="number" placeholder="Cantidad" class="quantity" required>
             <div>
@@ -293,7 +307,7 @@
                 status: row.querySelector('.status').value,
             }));
 
-            const response = await fetch('TU_URL_DE_APPS_SCRIPT', {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbx54WAUV6Qqu0nvYPsdubW1rvuPLhrBucrOZ5O5TQiGJ0vrnKfVGD9VhjitFK8ugrVkzQ/exec', {
                 method: 'POST',
                 body: JSON.stringify({ date, configurator, items }),
             });
