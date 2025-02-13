@@ -312,6 +312,7 @@
 
             const response = await fetch('https://script.google.com/macros/s/AKfycbx54WAUV6Qqu0nvYPsdubW1rvuPLhrBucrOZ5O5TQiGJ0vrnKfVGD9VhjitFK8ugrVkzQ/exec', {
                 method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ date, configurator, items, coment }),
             });
 
