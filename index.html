@@ -310,9 +310,10 @@
 
             const coment = document.getElementById('coment').value;
 
-            const response = await fetch('https://script.google.com/macros/s/AKfycbyWkGZIXVoF5N9Ai38cixNT7FGY8yOC5tkrxnzyQh9iK31254oFHfReCn3xh_bA56wkVw/exec', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+            const response = await fetch('https://script.google.com/macros/s/AKfycbx5-BxuIoLq-Z_eOtt5Vh22l5EobFaiUqKIouHEsCeDguWH1TgfiBSfUYyHe0Su2daRfg/exec', {
+                method: "POST",
+                redirect: "follow",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
                 body: JSON.stringify({ date, configurator, items, coment }),
             });
 
