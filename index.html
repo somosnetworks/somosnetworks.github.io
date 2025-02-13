@@ -164,11 +164,11 @@
             <label>Configurador:</label>
             <select id="configurator" required>
                 <option value="" disabled selected>Seleccione nombre</option>
-                <option value="opcion1">Kevin David Montoya Rivera</option>
-                <option value="opcion2">Janeth Patricia David</option>
-                <option value="opcion3">Reinel Villegas Calderón</option>
-                <option value="opcion4">Sebastián Ortiz Jiménez</option>
-                <option value="opcion5">John Alejandro Vallejo Ramirez</option>
+                <option value="Kevin Montoya">Kevin David Montoya Rivera</option>
+                <option value="Janeth David">Janeth Patricia David</option>
+                <option value="Reinel Villegas">Reinel Villegas Calderón</option>
+                <option value="Sebastian Ortiz">Sebastián Ortiz Jiménez</option>
+                <option value="John Vallejo">John Alejandro Vallejo Ramirez</option>
             </select>
         </div>
 
@@ -179,38 +179,38 @@
                 <div>
                     <div class="label-radio">
                         <div>
-                            <input type="radio" id="nuevo" name="equipment" value="Nuevo" />
+                            <input type="radio" id="nuevo" name="equipment1" value="Nuevo" />
                             <label for="nuevo">Nuevo</label>
                         </div>
 
                         <div>
-                            <input type="radio" id="reintegro" name="equipment" value="Reintegro" />
+                            <input type="radio" id="reintegro" name="equipment1" value="Reintegro" />
                             <label for="reintegro">Reintegro</label>
                         </div>
                     </div>
                 </div>
-                <select id="equipmentType" name="equipmentType" required>
+                <select id="equipmentType" name="equipmentType1" required>
                     <option value="" disabled selected>Tipo de equipo</option>
-                    <option value="opcion1">Phantom</option>
-                    <option value="opcion2">Vilo 6 (Bodega)</option>
-                    <option value="opcion3">TvBox</option>
-                    <option value="opcion4">Deco</option>
-                    <option value="opcion5">Eero</option>
-                    <option value="opcion6">Vilo 6 (ORBS)</option>
-                    <option value="opcion7">Vilo 5 (ORBS)</option>
-                    <option value="opcion8">Vilo 5 (Bodega)</option>
-                    <option value="opcion9">Poe Reverso</option>
+                    <option value="Phantom">Phantom</option>
+                    <option value="Vilo 6 (Bodega)">Vilo 6 (Bodega)</option>
+                    <option value="TvBox">TvBox</option>
+                    <option value="Deco">Deco</option>
+                    <option value="Eero">Eero</option>
+                    <option value="Vilo 6 (ORBS)">Vilo 6 (ORBS)</option>
+                    <option value="Vilo 5 (ORBS)">Vilo 5 (ORBS)</option>
+                    <option value="Vilo 5 (Bodega)">Vilo 5 (Bodega)</option>
+                    <option value="Poe Reverso">Poe Reverso</option>
                 </select>
-                <input type="number" placeholder="Cantidad" class="quantity" required>
+                <input type="number" name="quantity1" placeholder="Cantidad" class="quantity" required>
                 <div>
                     <div class="label-radio">
                         <div>
-                            <input type="radio" id="bueno" name="status" value="Bueno" />
+                            <input type="radio" id="bueno" name="status1" value="Bueno" />
                             <label for="bueno">Bueno</label>
                         </div>
 
                         <div>
-                            <input type="radio" id="malo" name="status" value="Malo" />
+                            <input type="radio" id="malo" name="status1" value="Malo" />
                             <label for="malo">Malo</label>
                         </div>
                     </div>
@@ -257,19 +257,19 @@
                 </div>
             </div>
             </div>
-            <select id="equipmentType${rowCount}" name="equipmentType" required>
-            <option value="" disabled selected>Tipo de equipo</option>
-            <option value="opcion1">Phantom</option>
-            <option value="opcion2">Vilo 6 (Bodega)</option>
-            <option value="opcion3">TvBox</option>
-            <option value="opcion4">Deco</option>
-            <option value="opcion5">Eero</option>
-            <option value="opcion6">Vilo 6 (ORBS)</option>
-            <option value="opcion7">Vilo 5 (ORBS)</option>
-            <option value="opcion8">Vilo 5 (Bodega)</option>
-            <option value="opcion9">Poe Reverso</option>
+            <select id="equipmentType${rowCount}" name="equipmentType${rowCount}" required>
+                <option value="" disabled selected>Tipo de equipo</option>
+                <option value="Phantom">Phantom</option>
+                <option value="Vilo 6 (Bodega)">Vilo 6 (Bodega)</option>
+                <option value="TvBox">TvBox</option>
+                <option value="Deco">Deco</option>
+                <option value="Eero">Eero</option>
+                <option value="Vilo 6 (ORBS)">Vilo 6 (ORBS)</option>
+                <option value="Vilo 5 (ORBS)">Vilo 5 (ORBS)</option>
+                <option value="Vilo 5 (Bodega)">Vilo 5 (Bodega)</option>
+                <option value="Poe Reverso">Poe Reverso</option>
             </select>
-            <input type="number" placeholder="Cantidad" class="quantity" required>
+            <input type="number" name="quantity${rowCount}" placeholder="Cantidad" class="quantity" required>
             <div>
             <div class="label-radio">
                 <div>
@@ -301,12 +301,14 @@
             const date = document.getElementById('date').value;
             const configurator = document.getElementById('configurator').value;
 
-            const items = Array.from(document.querySelectorAll('.row')).map(row => ({
-                equipment: row.querySelector('.equipment').value,
-                equipmentType: row.querySelector('.equipmentType').value,
-                quantity: row.querySelector('.quantity').value,
+            const items = Array.from(document.querySelectorAll('#equipment-rows .row')).map(row => ({
+                equipment: row.querySelector('[name="equipment"]').value,
+                equipmentType: row.querySelector('[name="equipmentType"]').value,
+                quantity: row.querySelector('[name="quantity"]').value,
                 status: row.querySelector('.status').value,
             }));
+
+            console.log(items);
 
             const response = await fetch('https://script.google.com/macros/s/AKfycbx54WAUV6Qqu0nvYPsdubW1rvuPLhrBucrOZ5O5TQiGJ0vrnKfVGD9VhjitFK8ugrVkzQ/exec', {
                 method: 'POST',
@@ -314,6 +316,7 @@
             });
 
             const result = await response.json();
+            console.log(result);
             if (result.success) {
                 alert('Datos enviados correctamente');
                 form.reset();
